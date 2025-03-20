@@ -1,257 +1,275 @@
-/* About.css */
 .about-section {
-    padding: 100px 5%;
-    background-color: #fff;
+  padding: 100px 15px; /* Use fixed padding for consistency */
+  background-color: #fff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px; /* Add padding to container */
+}
+
+.heading {
+  font-size: 36px;
+  margin-bottom: 15px;
+  position: relative;
+  font-weight: 700;
+  color: #222;
+}
+
+.subheading {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 50px;
+}
+
+.content {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
+
+.image-container {
+  flex: 1;
+}
+
+.about-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.text-container {
+  flex: 1;
+}
+
+.paragraph {
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.stats-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-number {
+  font-size: 36px;
+  font-weight: 700;
+  color: #6C63FF;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .about-section {
+    padding: 60px 15px; /* Use fixed padding */
   }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
+
   .heading {
-    font-size: 36px;
-    margin-bottom: 15px;
-    position: relative;
-    font-weight: 700;
-    color: #222;
+    font-size: 28px;
+    text-align: center;
   }
-  
+
   .subheading {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 50px;
-  }
-  
-  .content {
-    display: flex;
-    gap: 60px;
-    align-items: center;
-  }
-  
-  .image-container {
-    flex: 1;
-  }
-  
-  .about-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  }
-  
-  .text-container {
-    flex: 1;
-  }
-  
-  .paragraph {
     font-size: 16px;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    color: #555;
+    text-align: center;
   }
-  
-  .stats-section {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 40px;
-  }
-  
-  .stat-item {
-    display: flex;
+
+  .content {
     flex-direction: column;
-    align-items: center;
+    gap: 40px;
   }
-  
-  .stat-number {
-    font-size: 36px;
-    font-weight: 700;
-    color: #6C63FF;
-    margin-bottom: 5px;
-  }
-  
-  .stat-label {
-    font-size: 14px;
-    color: #666;
-  }
-  
-  /* Media queries for responsiveness */
-  @media (max-width: 768px) {
-    .about-section {
-      padding: 60px 5%;
-    }
-    
-    .heading {
-      font-size: 28px;
-      text-align: center;
-    }
-    
-    .subheading {
-      font-size: 16px;
-      text-align: center;
-    }
-    
-    .content {
-      flex-direction: column;
-      gap: 40px;
-    }
-    
-    .image-container {
-      width: 100%;
-    }
-    
-    .stats-section {
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    
-    .stat-item {
-      flex: 1 0 40%;
-      margin-bottom: 20px;
-    }
-  }
-  
-  /* For even smaller screens */
-  @media (max-width: 480px) {
-    .stat-item {
-      flex: 1 0 45%;
-    }
-  }
-  /* Navigation.css */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 5%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    background-color: transparent;
-  }
-  
-  .navbar.scrolled {
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-    font-weight: 700;
-    font-size: 24px;
-    color: #333;
-    text-decoration: none;
-  }
-  
-  .logo span {
-    margin-left: 8px;
-  }
-  
-  .nav-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .nav-items {
-    display: flex;
-    gap: 30px;
-  }
-  
-  .nav-link {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    position: relative;
-    padding: 5px 0;
-    transition: color 0.3s ease;
-  }
-  
-  .nav-link:hover {
-    color: #6C63FF;
-  }
-  
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #6C63FF;
-    transition: width 0.3s ease;
-  }
-  
-  .nav-link:hover::after {
+
+  .image-container {
     width: 100%;
   }
-  
-  .contact-button {
-    padding: 10px 25px;
-    border: 1px solid #6C63FF;
-    border-radius: 4px;
-    background-color: transparent;
-    color: #6C63FF;
-    cursor: pointer;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    margin-left: 20px;
+
+  .stats-section {
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
   }
-  
-  .contact-button:hover {
-    background-color: #6C63FF;
-    color: white;
+
+  .stat-item {
+    flex: 1 0 40%;
+    margin-bottom: 20px;
   }
-  
-  .hamburger {
-    display: none;
-    cursor: pointer;
+}
+
+/* For even smaller screens */
+@media (max-width: 480px) {
+  .stat-item {
+    flex: 1 0 100%; /* Full width on very small screens */
   }
-  
-  /* Media queries for responsiveness */
-  @media (max-width: 768px) {
-    .hamburger {
-      display: block;
-    }
-    
-    .nav-container {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 70px;
-      left: 0;
-      right: 0;
-      background-color: white;
-      padding: 20px;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-      align-items: flex-start;
-    }
-    
-    .nav-container.menu-open {
-      display: flex;
-    }
-    
-    .nav-items {
-      flex-direction: column;
-      width: 100%;
-      gap: 15px;
-    }
-    
-    .nav-link {
-      padding: 10px 0;
-      width: 100%;
-      display: block;
-    }
-    
-    .contact-button {
-      width: 100%;
-      text-align: center;
-      margin-left: 0;
-      margin-top: 15px;
-    }
+}
+/* Contact.css */
+.contact-section {
+  padding: 100px 5%;
+  background-color: #fff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-heading {
+  font-size: 36px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  color: #222;
+}
+
+.contact-subheading {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 50px;
+}
+
+.contact-wrapper {
+  display: flex;
+  gap: 50px;
+}
+
+.contact-info {
+  flex: 1;
+}
+
+.contact-method {
+  margin-bottom: 30px;
+}
+
+.contact-method-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.contact-method-icon {
+  margin-right: 10px;
+  color: #6C63FF;
+}
+
+.contact-detail {
+  font-size: 16px;
+  color: #555;
+  padding-left: 30px;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background-color: #6C63FF;
+  color: #fff;
+}
+
+.form-container {
+  flex: 1;
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+
+  color: #333;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #6C63FF;
+  outline: none;
+}
+
+.form-textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+.form-button {
+  background-color: #6C63FF;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 4px;
+ 
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.form-button:hover {
+  background-color: #5a52d5;
+  transform: translateY(-2px);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 60px 5%;
   }
-  
+
+  .contact-heading {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .contact-subheading {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .contact-wrapper {
+    flex-direction: column;
+  }
+}

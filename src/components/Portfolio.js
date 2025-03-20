@@ -1,7 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Portfolio() {
-  // Base styles without media queries
+  // State to track screen size
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+  
+  // Effect to handle window resize
+  useEffect(() => {
+    // Initial check
+    handleResize();
+    
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  // Function to determine screen size
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 768);
+    setIsTablet(window.innerWidth <= 1024 && window.innerWidth > 768);
+  };
+
+  // Base styles
   const sectionStyles = {
     padding: '100px 5%',
     backgroundColor: '#f8f9fa',
@@ -13,26 +35,31 @@ function Portfolio() {
   };
 
   const headingStyles = {
-    fontSize: '36px',
+    fontSize: isMobile ? '28px' : '36px',
     marginBottom: '15px',
     fontWeight: '700',
     color: '#222',
+    textAlign: isMobile ? 'center' : 'left',
   };
 
   const subheadingStyles = {
-    fontSize: '18px',
+    fontSize: isMobile ? '16px' : '18px',
     color: '#666',
     marginBottom: '50px',
+    textAlign: isMobile ? 'center' : 'left',
   };
 
   const categoryHeadingStyles = {
-    fontSize: '28px',
+    fontSize: isMobile ? '24px' : '28px',
     fontWeight: '600',
     color: '#333',
     marginBottom: '30px',
     position: 'relative',
-    paddingLeft: '15px',
-    borderLeft: '4px solid #6C63FF',
+    paddingLeft: isMobile ? '0' : '15px',
+    borderLeft: isMobile ? 'none' : '4px solid #6C63FF',
+    textAlign: isMobile ? 'center' : 'left',
+    paddingBottom: isMobile ? '10px' : '0',
+    borderBottom: isMobile ? '2px solid #6C63FF' : 'none',
   };
 
   const inlineSectionContainerStyles = {
@@ -44,57 +71,15 @@ function Portfolio() {
 
   const inlineSectionStyles = {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: isMobile || isTablet ? 'column' : 'row',
     alignItems: 'flex-start',
     gap: '30px',
   };
 
-  // Use window.innerWidth to conditionally apply styles
-  const isMobile = window.innerWidth <= 768;
-  const isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
-
-  // Apply responsive styles based on screen size
-  const responsivePortfolioGridStyles = {
+  const portfolioGridStyles = {
     display: 'grid',
     gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
     gap: '30px',
-  };
-
-  // Apply responsive styles to the inline section
-  const responsiveInlineSectionStyles = {
-    ...inlineSectionStyles,
-    flexDirection: isTablet || isMobile ? 'column' : 'row',
-  };
-
-  // Apply responsive styles to the category heading
-  const responsiveCategoryHeadingStyles = {
-    ...categoryHeadingStyles,
-    ...(isMobile && {
-      fontSize: '24px',
-      textAlign: 'center',
-      paddingLeft: '0',
-      borderLeft: 'none',
-      borderBottom: '2px solid #6C63FF',
-      paddingBottom: '10px',
-    }),
-  };
-
-  // Apply responsive styles to section heading
-  const responsiveHeadingStyles = {
-    ...headingStyles,
-    ...(isMobile && {
-      fontSize: '28px',
-      textAlign: 'center',
-    }),
-  };
-
-  // Apply responsive styles to subheading
-  const responsiveSubheadingStyles = {
-    ...subheadingStyles,
-    ...(isMobile && {
-      fontSize: '16px',
-      textAlign: 'center',
-    }),
   };
 
   const sectionContentStyles = {
@@ -119,11 +104,10 @@ function Portfolio() {
     position: 'relative',
   };
 
-  // Updated to use backgroundImage instead of img tag
   const projectBackgroundStyles = (imageUrl) => ({
     width: '100%',
     height: '220px',
-    backgroundImage: `url(${imageUrl || 'https://cdn2.vectorstock.com/i/1000x1000/01/71/hotel-workers-avatars-characters-vector-21070171.jpg'})`,
+    backgroundImage: `url(${imageUrl || 'https://via.placeholder.com/400x220'})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     position: 'relative',
@@ -175,7 +159,7 @@ function Portfolio() {
     marginTop: 'auto',
   };
 
-  // UI/UX Design projects
+  // Project data
   const uiUxProjects = [
     {
       id: 1,
@@ -184,10 +168,8 @@ function Portfolio() {
       image: '../../public/hero.png',
       link: 'https://www.figma.com/proto/CuPoHRhPrxdjmNB8WrCoH1?node-id=0-1&t=Rf0MKvbeFGuj4Uqd-6'
     },
-   
   ];
 
-  // Mobile App projects
   const mobileAppProjects = [
     {
       id: 1,
@@ -196,10 +178,8 @@ function Portfolio() {
       image: 'mobile-project1.jpg',
       link: 'https://employee-app1-sigma.vercel.app/'
     },
-  
   ];
 
-  // Web Development projects
   const webDevProjects = [
     {
       id: 1,
@@ -208,20 +188,22 @@ function Portfolio() {
       image: 'web-project1.jpg',
       link: 'https://employee-app1-sigma.vercel.app/'
     },
-   
   ];
 
-  // Render a project card with background image and link
+  // Render a project card
   const renderProjectCard = (project, category) => (
-    <div key={`${category}-${project.id}`} style={projectCardStyles} 
-         onMouseEnter={(e) => {
-           const bgElement = e.currentTarget.querySelector('.project-bg');
-           if (bgElement) bgElement.style.transform = 'scale(1.05)';
-         }}
-         onMouseLeave={(e) => {
-           const bgElement = e.currentTarget.querySelector('.project-bg');
-           if (bgElement) bgElement.style.transform = 'scale(1)';
-         }}>
+    <div 
+      key={`${category}-${project.id}`} 
+      style={projectCardStyles} 
+      onMouseEnter={(e) => {
+        const bgElement = e.currentTarget.querySelector('.project-bg');
+        if (bgElement) bgElement.style.transform = 'scale(1.05)';
+      }}
+      onMouseLeave={(e) => {
+        const bgElement = e.currentTarget.querySelector('.project-bg');
+        if (bgElement) bgElement.style.transform = 'scale(1)';
+      }}
+    >
       <div style={projectImageContainerStyles}>
         <div 
           className="project-bg"
@@ -252,56 +234,38 @@ function Portfolio() {
     </div>
   );
 
-  // Add a window resize event listener to update styles when the window size changes
-  React.useEffect(() => {
-    const handleResize = () => {
-      // Force a re-render when window is resized
-      // In a real application, you would use state to trigger this
-      // This is a simplified approach
-      window.location.reload();
-    };
-
-    // Add the event listener
-    window.addEventListener('resize', handleResize);
-
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   return (
     <section id="portfolio" style={sectionStyles}>
       <div style={containerStyles}>
-        <h2 style={responsiveHeadingStyles}>My Portfolio</h2>
-        <p style={responsiveSubheadingStyles}>Explore my work across different specialties</p>
+        <h2 style={headingStyles}>My Portfolio</h2>
+        <p style={subheadingStyles}>Explore my work across different specialties</p>
         
         <div style={inlineSectionContainerStyles}>
           {/* UI/UX Design Section */}
-          <div style={responsiveInlineSectionStyles}>
+          <div style={inlineSectionStyles}>
             <div style={sectionContentStyles}>
-              <h3 style={responsiveCategoryHeadingStyles}>UI/UX Design</h3>
-              <div style={responsivePortfolioGridStyles}>
+              <h3 style={categoryHeadingStyles}>UI/UX Design</h3>
+              <div style={portfolioGridStyles}>
                 {uiUxProjects.map(project => renderProjectCard(project, 'ui'))}
               </div>
             </div>
           </div>
           
           {/* Mobile App Development Section */}
-          <div style={responsiveInlineSectionStyles}>
+          <div style={inlineSectionStyles}>
             <div style={sectionContentStyles}>
-              <h3 style={responsiveCategoryHeadingStyles}>Mobile App Development</h3>
-              <div style={responsivePortfolioGridStyles}>
+              <h3 style={categoryHeadingStyles}>Mobile App Development</h3>
+              <div style={portfolioGridStyles}>
                 {mobileAppProjects.map(project => renderProjectCard(project, 'mobile'))}
               </div>
             </div>
           </div>
           
           {/* Web Development Section */}
-          <div style={responsiveInlineSectionStyles}>
+          <div style={inlineSectionStyles}>
             <div style={sectionContentStyles}>
-              <h3 style={responsiveCategoryHeadingStyles}>Web Development</h3>
-              <div style={responsivePortfolioGridStyles}>
+              <h3 style={categoryHeadingStyles}>Web Development</h3>
+              <div style={portfolioGridStyles}>
                 {webDevProjects.map(project => renderProjectCard(project, 'web'))}
               </div>
             </div>

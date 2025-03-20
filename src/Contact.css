@@ -1,0 +1,153 @@
+/* Contact.css */
+.contact-section {
+    padding: 100px 5%;
+    background-color: #fff;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .contact-heading {
+    font-size: 36px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: #222;
+  }
+  
+  .contact-subheading {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 50px;
+  }
+  
+  .contact-wrapper {
+    display: flex;
+    gap: 50px;
+  }
+  
+  .contact-info {
+    flex: 1;
+  }
+  
+  .contact-method {
+    margin-bottom: 30px;
+  }
+  
+  .contact-method-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+    display: flex;
+    align-items: center;
+  }
+  
+  .contact-method-icon {
+    margin-right: 10px;
+    color: #6C63FF;
+  }
+  
+  .contact-detail {
+    font-size: 16px;
+    color: #555;
+    padding-left: 30px;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    transition: all 0.3s ease;
+  }
+  
+  .social-icon:hover {
+    background-color: #6C63FF;
+    color: #fff;
+  }
+  
+  .form-container {
+    flex: 1;
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 8px;
+
+    color: #333;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #333;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-input:focus {
+    border-color: #6C63FF;
+    outline: none;
+  }
+  
+  .form-textarea {
+    height: 150px;
+    resize: vertical;
+  }
+  
+  .form-button {
+    background-color: #6C63FF;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+  
+  .form-button:hover {
+    background-color: #5a52d5;
+    transform: translateY(-2px);
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 768px) {
+    .contact-section {
+      padding: 60px 5%;
+    }
+  
+    .contact-heading {
+      font-size: 28px;
+      text-align: center;
+    }
+  
+    .contact-subheading {
+      font-size: 16px;
+      text-align: center;
+    }
+  
+    .contact-wrapper {
+      flex-direction: column;
+    }
+  }
