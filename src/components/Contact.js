@@ -8,6 +8,12 @@ function Contact() {
     subject: '',
     message: ''
   });
+  
+  const [formStatus, setFormStatus] = useState({
+    submitting: false,
+    success: false,
+    error: false
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,15 +23,42 @@ function Contact() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
+    setFormStatus({ submitting: true, success: false, error: false });
+    
+    try {
+      const response = await fetch('https://formspree.io/f/mayrqqze', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        setFormStatus({ submitting: false, success: true, error: false });
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setFormStatus(prev => ({ ...prev, success: false }));
+        }, 5000);
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setFormStatus({ submitting: false, success: false, error: true });
+      // Reset error message after 5 seconds
+      setTimeout(() => {
+        setFormStatus(prev => ({ ...prev, error: false }));
+      }, 5000);
+    }
   };
 
   return (
@@ -99,6 +132,18 @@ function Contact() {
           </div>
           
           <div className="form-container">
+            {formStatus.success && (
+              <div className="form-message success">
+                Message sent successfully! I'll get back to you soon.
+              </div>
+            )}
+            
+            {formStatus.error && (
+              <div className="form-message error">
+                There was an error sending your message. Please try again.
+              </div>
+            )}
+            
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="name" className="form-label">Your Name</label>
@@ -111,6 +156,7 @@ function Contact() {
                   required
                   className="form-input"
                   placeholder="John Doe"
+                  disabled={formStatus.submitting}
                 />
               </div>
               
@@ -125,6 +171,7 @@ function Contact() {
                   required
                   className="form-input"
                   placeholder="john@example.com"
+                  disabled={formStatus.submitting}
                 />
               </div>
               
@@ -139,6 +186,7 @@ function Contact() {
                   required
                   className="form-input"
                   placeholder="Project Inquiry"
+                  disabled={formStatus.submitting}
                 />
               </div>
               
@@ -152,11 +200,16 @@ function Contact() {
                   required
                   className="form-input form-textarea"
                   placeholder="Tell me about your project..."
+                  disabled={formStatus.submitting}
                 />
               </div>
               
-              <button type="submit" className="form-button">
-                Send Message
+              <button 
+                type="submit" 
+                className="form-button"
+                disabled={formStatus.submitting}
+              >
+                {formStatus.submitting ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </div>

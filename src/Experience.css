@@ -5,7 +5,7 @@
   }
   
   .container {
-    max-width: 1000px;
+    max-width: 1200px; /* Increased from 1000px for better laptop display */
     margin: 0 auto;
   }
   
@@ -24,7 +24,7 @@
   
   .timeline {
     position: relative;
-    max-width: 800px;
+    max-width: 1000px; /* Increased from 800px for better laptop display */
     margin: 0 auto;
   }
   
@@ -69,13 +69,19 @@
   
   .card {
     background-color: #f8f9fa;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    padding: 30px; /* Increased from 25px for better spacing */
+    border-radius: 12px; /* Increased from 10px for modern look */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); /* Enhanced shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
   }
   
   .experience-title {
-    font-size: 20px;
+    font-size: 22px; /* Increased from 20px */
     font-weight: 600;
     margin-bottom: 5px;
     color: #333;
@@ -89,7 +95,7 @@
   }
   
   .experience-description {
-    font-size: 14px;
+    font-size: 15px; /* Increased from 14px for better readability */
     line-height: 1.7;
     color: #555;
   }
@@ -97,17 +103,22 @@
   .skills {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 15px;
+    gap: 10px; /* Increased from 8px */
+    margin-top: 20px; /* Increased from 15px */
   }
   
   .skill-tag {
     background-color: #e0e0ff;
     color: #6C63FF;
-    padding: 4px 10px;
+    padding: 5px 12px; /* Slightly larger padding */
     border-radius: 15px;
-    font-size: 12px;
+    font-size: 13px; /* Increased from 12px */
     font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+  
+  .skill-tag:hover {
+    background-color: #d0d0ff;
   }
   
   /* Media queries for responsiveness */
@@ -127,7 +138,8 @@
     }
   }
   
-  @media (min-width: 768px) {
+  /* Enhanced laptop styles - applied at 769px and above */
+  @media (min-width: 769px) {
     .timeline-line {
       left: 50%;
       transform: translateX(-50%);
@@ -156,5 +168,58 @@
     .timeline-item.left .timeline-dot {
       left: -8px;
       right: auto;
+    }
+    
+    /* Additional laptop-specific improvements */
+    .timeline {
+      padding: 20px 0;
+    }
+    
+    .card {
+      margin: 10px 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-item.left .timeline-date {
+      margin-right: 0;
+      margin-left: auto;
+    }
+    
+    /* Added spacing between content */
+    .timeline-item {
+      margin-bottom: 70px;
+    }
+  }
+  
+  /* Large laptop and desktop specific enhancements */
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1200px;
+    }
+    
+    .timeline {
+      max-width: 1000px;
+    }
+    
+    .card {
+      padding: 35px;
+      margin: 15px 30px;
+    }
+    
+    .timeline-item {
+      transition: all 0.3s ease;
+    }
+    
+    .experience-description {
+      line-height: 1.8;
+    }
+    
+    /* Improved alignment on larger screens */
+    .timeline-item.left .card {
+      margin-right: 40px;
+    }
+    
+    .timeline-item:not(.left) .card {
+      margin-left: 40px;
     }
   }

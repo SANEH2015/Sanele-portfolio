@@ -64,26 +64,29 @@ function Portfolio() {
 
   const inlineSectionContainerStyles = {
     display: 'flex',
-    flexDirection: 'column',
-    gap: '60px',
+    flexDirection: 'row', // Row for laptop
+    flexWrap: 'wrap', // Added wrap for responsiveness
+    gap: '30px', // Reduced gap between sections
     marginBottom: '30px',
   };
 
   const inlineSectionStyles = {
     display: 'flex',
-    flexDirection: isMobile || isTablet ? 'column' : 'row',
+    flexDirection: 'column', // Each section internally uses column
     alignItems: 'flex-start',
-    gap: '30px',
+    width: isMobile ? '100%' : 'calc(33.33% - 20px)', // Equal width sections with gap consideration
+    minWidth: isMobile ? 'auto' : '300px', // Minimum width to prevent squeezing
+  };
+
+  const sectionContentStyles = {
+    width: '100%', // Make content take full width of its container
   };
 
   const portfolioGridStyles = {
     display: 'grid',
-    gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
+    gridTemplateColumns: '1fr', // Always one column per section when in row layout
     gap: '30px',
-  };
-
-  const sectionContentStyles = {
-    flex: '1',
+    width: '100%', // Ensure grid takes full width
   };
 
   const projectCardStyles = {
@@ -95,6 +98,7 @@ function Portfolio() {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    minWidth: '100%', // Ensure card takes full width of its container
   };
 
   const projectImageContainerStyles = {
@@ -173,10 +177,10 @@ function Portfolio() {
   const mobileAppProjects = [
     {
       id: 1,
-      title: 'Task Management App',
-      description: 'Collaborative project management tool with real-time updates.',
+      title: 'New hope project',
+      description: 'A full-featured app for new hope organisation.',
       image: 'mobile-project1.jpg',
-      link: 'https://employee-app1-sigma.vercel.app/'
+      link: 'https://new-hope-nxrm.vercel.app/'
     },
   ];
 
