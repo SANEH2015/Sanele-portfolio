@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 // Import your images properly
-import certificate1 from '../../src/Assect/certificate-1.jpg';
-import certificate2 from '../../src/Assect/certificate (1)_page-0001.jpg';
-import certificate3 from '../../src/Assect/certificate (2)_page-0001.jpg';
-import certificate4 from '../../src/Assect/certificate (3)_page-0001.jpg';
+import certificate1 from '../../src/Asset/certificate-1.jpg';
+import certificate2 from '../../src/Asset/certificate (1)_page-0001.jpg';
+import certificate3 from '../../src/Asset/certificate (2)_page-0001.jpg';
+import certificate4 from '../../src/Asset/certificate (3)_page-0001.jpg';
 
 function Certificates() {
   // State for the selected certificate modal

@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Employee from '../../src/Asset/Screenshot (75).png';
+import NewHope from '../../src/Asset/Screenshot (77).png';
+import Hotel from '../../src/Asset/Screenshot (78).png';
 
 function Portfolio() {
   // State to track screen size
@@ -108,16 +111,30 @@ function Portfolio() {
     position: 'relative',
   };
 
-  const projectBackgroundStyles = (imageUrl) => ({
-    width: '100%',
-    height: '220px',
-    backgroundImage: `url(${imageUrl || 'https://via.placeholder.com/400x220'})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    position: 'relative',
-    transition: 'transform 0.5s ease',
-  });
-
+  const projectBackgroundStyles = (imageUrl) => {
+    console.log("Image URL:", imageUrl);
+    
+    if (!imageUrl) {
+      console.warn("Image URL is undefined or null");
+      return {
+        width: '100%',
+        height: '220px',
+        backgroundColor: '#f0f0f0', // Fallback color
+        position: 'relative',
+        transition: 'transform 0.5s ease',
+      };
+    }
+    
+    return {
+      width: '100%',
+      height: '220px',
+      backgroundImage: `url("${String(imageUrl)}")`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      position: 'relative',
+      transition: 'transform 0.5s ease',
+    };
+  };
   const projectCategoryStyles = {
     position: 'absolute',
     top: '15px',
@@ -163,13 +180,13 @@ function Portfolio() {
     marginTop: 'auto',
   };
 
-  // Project data
+  // Project data - Standardized to use 'image' property across all projects
   const uiUxProjects = [
     {
       id: 1,
       title: 'Hotel App',
       description: 'Analytics dashboard for tracking performance across multiple social platforms.',
-      image: '../../public/hero.png',
+      image: Hotel, // Changed from imageUrl to image for consistency
       link: 'https://www.figma.com/proto/CuPoHRhPrxdjmNB8WrCoH1?node-id=0-1&t=Rf0MKvbeFGuj4Uqd-6'
     },
   ];
@@ -179,7 +196,7 @@ function Portfolio() {
       id: 1,
       title: 'New hope project',
       description: 'A full-featured app for new hope organisation.',
-      image: 'mobile-project1.jpg',
+      image: NewHope, // Already using 'image'
       link: 'https://new-hope-nxrm.vercel.app/'
     },
   ];
@@ -189,54 +206,59 @@ function Portfolio() {
       id: 1,
       title: 'Employee Management System',
       description: 'A full-featured app for managing employee records and tasks.',
-      image: 'web-project1.jpg',
+      image: Employee, // Already using 'image'
       link: 'https://employee-app1-sigma.vercel.app/'
     },
   ];
 
   // Render a project card
-  const renderProjectCard = (project, category) => (
-    <div 
-      key={`${category}-${project.id}`} 
-      style={projectCardStyles} 
-      onMouseEnter={(e) => {
-        const bgElement = e.currentTarget.querySelector('.project-bg');
-        if (bgElement) bgElement.style.transform = 'scale(1.05)';
-      }}
-      onMouseLeave={(e) => {
-        const bgElement = e.currentTarget.querySelector('.project-bg');
-        if (bgElement) bgElement.style.transform = 'scale(1)';
-      }}
-    >
-      <div style={projectImageContainerStyles}>
-        <div 
-          className="project-bg"
-          style={projectBackgroundStyles(project.image)} 
-        />
-        <span style={projectCategoryStyles}>
-          {category === 'ui' ? 'UI/UX Design' : 
-           category === 'mobile' ? 'Mobile App' : 'Web Development'}
-        </span>
+  const renderProjectCard = (project, category) => {
+    console.log(`Rendering ${category} project:`, project.title);
+    console.log("Image source:", project.image);
+    
+    return (
+      <div 
+        key={`${category}-${project.id}`} 
+        style={projectCardStyles} 
+        onMouseEnter={(e) => {
+          const bgElement = e.currentTarget.querySelector('.project-bg');
+          if (bgElement) bgElement.style.transform = 'scale(1.05)';
+        }}
+        onMouseLeave={(e) => {
+          const bgElement = e.currentTarget.querySelector('.project-bg');
+          if (bgElement) bgElement.style.transform = 'scale(1)';
+        }}
+      >
+        <div style={projectImageContainerStyles}>
+          <div 
+            className="project-bg"
+            style={projectBackgroundStyles(project.image)} 
+          />
+          <span style={projectCategoryStyles}>
+            {category === 'ui' ? 'UI/UX Design' : 
+             category === 'mobile' ? 'Mobile App' : 'Web Development'}
+          </span>
+        </div>
+        <div style={projectInfoStyles}>
+          <h3 style={projectTitleStyles}>{project.title}</h3>
+          <p style={projectDescriptionStyles}>{project.description}</p>
+          <a 
+            href={project.link} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            style={projectLinkStyles}
+            onMouseEnter={(e) => e.target.style.color = '#5a52d5'}
+            onMouseLeave={(e) => e.target.style.color = '#6C63FF'}
+          >
+            View Project
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '5px' }}>
+              <path d="M8 12L12 8M12 8L8 4M12 8H4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
+        </div>
       </div>
-      <div style={projectInfoStyles}>
-        <h3 style={projectTitleStyles}>{project.title}</h3>
-        <p style={projectDescriptionStyles}>{project.description}</p>
-        <a 
-          href={project.link} 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          style={projectLinkStyles}
-          onMouseEnter={(e) => e.target.style.color = '#5a52d5'}
-          onMouseLeave={(e) => e.target.style.color = '#6C63FF'}
-        >
-          View Project
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '5px' }}>
-            <path d="M8 12L12 8M12 8L8 4M12 8H4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <section id="portfolio" style={sectionStyles}>
