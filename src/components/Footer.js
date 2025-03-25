@@ -26,7 +26,7 @@ function Footer() {
               <li className="link-item"><a href="#about" className="link">About Me</a></li>
               <li className="link-item"><a href="#portfolio" className="link">Portfolio</a></li>
               <li className="link-item"><a href="#experience" className="link">Experience</a></li>
-              <li className="link-item"><a href="#testimonials" className="link">Testimonials</a></li>
+              <li className="link-item"><a href="#Certificate" className="link">Certificate</a></li>
               <li className="link-item"><a href="#contact" className="link">Contact</a></li>
             </ul>
           </div>
@@ -37,9 +37,7 @@ function Footer() {
               <li className="link-item"><a href="#" className="link">Web Development</a></li>
               <li className="link-item"><a href="#" className="link">Mobile App Development</a></li>
               <li className="link-item"><a href="#" className="link">UI/UX Design</a></li>
-              <li className="link-item"><a href="#" className="link">E-commerce Solutions</a></li>
-              <li className="link-item"><a href="#" className="link">CMS Development</a></li>
-              <li className="link-item"><a href="#" className="link">SEO Optimization</a></li>
+           
             </ul>
           </div>
         </div>

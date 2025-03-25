@@ -40,7 +40,7 @@ function Navigation() {
           <a href="#home" className="nav-link" onClick={toggleMenu}>Home</a>
           <a href="#portfolio" className="nav-link" onClick={toggleMenu}>Portfolio</a>
           <a href="#about" className="nav-link" onClick={toggleMenu}>About Me</a>
-          <a href="#testimonials" className="nav-link" onClick={toggleMenu}>Certificate</a>
+          <a href="#Certificate" className="nav-link" onClick={toggleMenu}>Certificate</a>
         </div>
         <a href="#contact" className="contact-button" onClick={toggleMenu}>Contact Me</a>
       </div>

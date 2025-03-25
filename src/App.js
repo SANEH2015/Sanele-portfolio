@@ -7,7 +7,7 @@ import Portfolio from '../src/components/Portfolio';
 import Experience from '../src/components/Experience';
 import Contact from '../src/components/Contact';
 import Footer from '../src/components/Footer';
-import Testimonial from '../src/components/Testimonials.js'
+import Testimonial from './components/Certificate.js'
 import './App.css';
 
 function App() {
