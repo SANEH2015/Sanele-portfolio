@@ -12,7 +12,7 @@ function About() {
         <div className="content">
           <div className="image-container">
             <img 
-              src="/Hero.png"
+              src="/hero.png"
               alt="About Sanele" 
               className="about-image"
             />
